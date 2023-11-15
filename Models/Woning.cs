@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace AquaBrainAPI;
 
+public partial class requestWoning {
+    public int KlantId { get; set; }
+    public string Naam { get; set; } = "Woning";
+    public string? Adres { get; set; } = null!;
+    public string? Postcode { get; set; } = null!;
+    public string? Plaats { get; set; } = null!;
+    public string? Land { get; set; } = null!;
+    public int? Oppervlakte { get; set; } = null!;
+}
+
 public partial class Woning
 {
     public int Id { get; set; }

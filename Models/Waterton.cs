@@ -3,6 +3,12 @@ using System.Collections.Generic;
 
 namespace AquaBrainAPI;
 
+public partial class requestWaterton {
+    public int WoningId { get; set; }
+    public string Naam { get; set; } = null!;
+    public int MaxInhoud { get; set; }
+}
+
 public partial class Waterton
 {
     public int Id { get; set; }
