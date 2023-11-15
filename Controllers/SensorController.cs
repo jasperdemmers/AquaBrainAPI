@@ -45,5 +45,15 @@ namespace AquaBrainAPI.Controllers
             }
             return Ok(result);
         }
+
+        [HttpPost("data")]
+        public async Task<ActionResult<Sensor>> NewSensorData([FromBody]newSensor request)
+        {
+            var result = await _sensorService.NewSensorData(request);
+            if (result is null) {
+                return BadRequest("Sensor data niet toegevoegd");
+            }
+            return Ok(result);
+        }
     }
 }

@@ -64,4 +64,26 @@ public class SensorService : ISensorService
 
         return Sensors;
     }
+    public async Task<Sensor> NewSensorData(newSensor request)
+    {
+        var waterton = await _context.Watertonnen.FindAsync(request.WatertonId);
+        
+        if (waterton == null) {
+            return null;
+        }
+
+        var data = new Sensor
+        {
+            WatertonId = request.WatertonId,
+            SensorId = request.SensorID,
+            Waarde = request.waarde,
+            Type = request.Type,
+        };
+
+        //Add new sensor data to the database.
+        _context.Sensors.Add(data);
+        await _context.SaveChangesAsync();
+
+        return data;
+    }
 }
