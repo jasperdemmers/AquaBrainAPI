@@ -11,79 +11,69 @@ namespace AquaBrainAPI.Controllers
     [ApiController]
     public class KlantController : ControllerBase
     {
-        private static List<Klant> klant = new List<Klant>
+        private readonly IKlantService _klantService;
+        public KlantController(IKlantService klantService)
         {
-            new Klant { 
-                Id = 1, 
-                VoorNaam = "Jan", 
-                AcherNaam = "Janssen", 
-                Email = "Demo@demo.nl", 
-                TelefoonNummer = "0612345678" 
-            },
-            new Klant {
-                Id = 2,
-                VoorNaam = "Piet",
-                AcherNaam = "Pietersen",
-                Email = "Demo@demo.nl",
-                TelefoonNummer = "0612345678"
-            }
-        };
+            _klantService = klantService;
+        }
 
         [HttpGet]
         public async Task<ActionResult<List<Klant>>> GetAllKlanten()
         {
-            return Ok(klant);
+            var result = await _klantService.GetAllKlanten();
+            if (result is null) {
+                return NotFound("Klanten niet gevonden");
+            }
+            return Ok(result);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Klant>> GetSingleKlant(int id)
+        [HttpGet("gebruikersnaam/{gebruikersnaam}")]
+        public async Task<ActionResult<Klant>> GetKlantByUsername(string gebruikersnaam)
         {
-            var singleKlant = klant.Find(x => x.Id == id);
-
-            if (singleKlant == null)
-            {
+            var result = await _klantService.GetKlantByUsername(gebruikersnaam);
+            if (result is null) {
                 return NotFound("Klant niet gevonden");
             }
-
-            return Ok(singleKlant);
+            return Ok(result);
+        }
+        [HttpGet("id/{id}")]
+        public async Task<ActionResult<Klant>> GetKlantById(int id)
+        {
+            var result = await _klantService.GetKlantById(id);
+            if (result is null) {
+                return NotFound("Klant niet gevonden");
+            }
+            return Ok(result);
         }
 
         [HttpPost]
         public async Task<ActionResult<List<Klant>>> AddKlant([FromBody]Klant request)
         {
-            klant.Add(request);
-            return Ok(klant);
+            var result = await _klantService.AddKlant(request);
+            if (result is null) {
+                return BadRequest("Klant niet toegevoegd");
+            }
+            return Ok(result);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<List<Klant>>> UpdateKlant(int id, [FromBody]Klant request)
+        public async Task<ActionResult<Klant>> UpdateKlant(int id, [FromBody]requestKlant request)
         {
-            var selKlant = klant.Find(x => x.Id == id);
-            if (selKlant == null)
-            {
+            var result = await _klantService.UpdateKlant(id, request);
+            if (result is null) {
                 return NotFound("Klant niet gevonden");
             }
-
-            selKlant.VoorNaam = request.VoorNaam;
-            selKlant.AcherNaam = request.AcherNaam;
-            selKlant.Email = request.Email;
-            selKlant.TelefoonNummer = request.TelefoonNummer;
-
-            return Ok(klant);
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<Klant>>> DeleteKlant(int id)
         {
-            var selKlant = klant.Find(x => x.Id == id);
-            if (selKlant == null)
-            {
+            var result = await _klantService.DeleteKlant(id);
+            if (result is null) {
                 return NotFound("Klant niet gevonden");
             }
-
-            klant.Remove(selKlant);
-
-            return Ok(klant);
+            return Ok(result);
         }
     }
 }

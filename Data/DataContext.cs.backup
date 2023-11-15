@@ -1,0 +1,18 @@
+﻿global using Microsoft.EntityFrameworkCore;
+
+namespace AquaBrainAPI;
+
+public class DataContext : DbContext
+{
+    public DataContext(DbContextOptions<DataContext> options) : base(options)
+    {
+
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseMySql("Server=192.168.154.22;Port=3306;Database=test;User=Backend;Password=AquaBrain-BE;", new MySqlServerVersion(new Version(8, 2)));
+    }
+
+    public DbSet<Klant> Klant { get; set; }     
+}

@@ -1,11 +1,14 @@
+using AquaBrainAPI;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IKlantService, KlantService>();
+builder.Services.AddDbContext<DevelopmentContext>();
 
 var app = builder.Build();
 
