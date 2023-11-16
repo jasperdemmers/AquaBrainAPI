@@ -17,15 +17,18 @@ public partial class DevelopmentContext : DbContext
 
     public virtual DbSet<Klant> Klanten { get; set; }
 
-    public virtual DbSet<OnderhoudLogboek> OnderhoudLogboeken { get; set; }
+    public virtual DbSet<OnderhoudLogboek> OnderhoudLogboeks { get; set; }
 
     public virtual DbSet<Sensor> Sensors { get; set; }
+
+    public virtual DbSet<Valve> Valves { get; set; }
 
     public virtual DbSet<Waterton> Watertonnen { get; set; }
 
     public virtual DbSet<Woning> Woningen { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseMySql("server=192.168.154.22;port=3306;database=development;user=Backend;password=AquaBrain-BE", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -120,6 +123,27 @@ public partial class DevelopmentContext : DbContext
                 .HasForeignKey(d => d.WatertonId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FKSensor891887");
+        });
+
+        modelBuilder.Entity<Valve>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("valve");
+
+            entity.HasIndex(e => e.WatertonId, "valve_FK");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.CreatedDate)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .HasColumnType("timestamp")
+                .HasColumnName("Created_date");
+            entity.Property(e => e.WatertonId).HasColumnName("Waterton_ID");
+
+            entity.HasOne(d => d.Waterton).WithMany(p => p.Valves)
+                .HasForeignKey(d => d.WatertonId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("valve_FK");
         });
 
         modelBuilder.Entity<Waterton>(entity =>
