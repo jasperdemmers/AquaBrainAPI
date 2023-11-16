@@ -1,0 +1,16 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "server=192.168.178.2;port=3306;database=main;user=user;password=password"
+  },
+  "BasicAuth": {
+    "Username": "user",
+    "Password": "password"
+  }
+}
