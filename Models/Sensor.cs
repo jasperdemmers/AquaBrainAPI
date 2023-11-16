@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 namespace AquaBrainAPI;
-
 public partial class newSensor
 {
     public int WatertonId { get; set; }
@@ -10,7 +9,6 @@ public partial class newSensor
     public int waarde { get; set; }
     public string Type { get; set; }
 }
-
 public partial class Sensor
 {
     public int Id { get; set; }

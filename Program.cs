@@ -11,6 +11,7 @@ builder.Services.AddScoped<IKlantService, KlantService>();
 builder.Services.AddScoped<IWoningService, WoningService>();
 builder.Services.AddScoped<IWatertonService, WatertonService>();
 builder.Services.AddScoped<ISensorService, SensorService>();
+builder.Services.AddScoped<IValveService, ValveService>();
 builder.Services.AddDbContext<DevelopmentContext>();
 
 var app = builder.Build();

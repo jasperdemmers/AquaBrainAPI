@@ -14,7 +14,6 @@ public partial class requestKlant {
     public DateOnly GeboorteDatum { get; set; }
 
 }
-
 public partial class Klant
 {
     public int Id { get; set; }

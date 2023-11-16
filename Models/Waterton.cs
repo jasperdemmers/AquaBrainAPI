@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 
 namespace AquaBrainAPI;
-
 public partial class requestWaterton {
     public int WoningId { get; set; }
     public string Naam { get; set; } = null!;
     public int MaxInhoud { get; set; }
 }
-
 public partial class Waterton
 {
     public int Id { get; set; }
@@ -38,6 +36,8 @@ public partial class Waterton
     public virtual ICollection<OnderhoudLogboek> OnderhoudLogboeks { get; set; } = new List<OnderhoudLogboek>();
 
     public virtual ICollection<Sensor> Sensors { get; set; } = new List<Sensor>();
+
+    public virtual ICollection<Valve> Valves { get; set; } = new List<Valve>();
 
     public virtual Woning Woning { get; set; } = null!;
 }
