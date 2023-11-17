@@ -7,7 +7,7 @@ public partial class newSensor
     public int WatertonId { get; set; }
     public int SensorID { get; set; }
     public int waarde { get; set; }
-    public string Type { get; set; }
+    public string Type { get; set; } = "waterniveau";
 }
 public partial class Sensor
 {

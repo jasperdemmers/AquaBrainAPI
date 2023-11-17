@@ -42,7 +42,6 @@ public class KlantService : IKlantService
     {
         _context.Klanten.Add(request);
         await _context.SaveChangesAsync();
-
         return await _context.Klanten.ToListAsync();
     }
     public async Task<List<Klant>> DeleteKlant(int id)

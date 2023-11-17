@@ -104,7 +104,7 @@ public partial class DevelopmentContext : DbContext
             entity.HasIndex(e => e.WatertonId, "FKSensor891887");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
