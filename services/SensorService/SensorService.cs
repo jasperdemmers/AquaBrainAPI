@@ -66,12 +66,6 @@ public class SensorService : ISensorService
     }
     public async Task<Sensor> NewSensorData(newSensor request)
     {
-        var waterton = await _context.Watertonnen.FindAsync(request.WatertonId);
-        
-        if (waterton == null) {
-            return null;
-        }
-
         var data = new Sensor
         {
             WatertonId = request.WatertonId,
