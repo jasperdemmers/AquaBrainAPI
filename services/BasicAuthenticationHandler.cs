@@ -44,8 +44,11 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
             return AuthenticateResult.Fail("Invalid Authorization Header");
         }
 
+        string envUsername = Environment.GetEnvironmentVariable("BASIC_AUTH_USERNAME");
+        string envPassword = Environment.GetEnvironmentVariable("BASIC_AUTH_PASSWORD");
+
         // You can replace this with your own system of getting users and verifying passwords
-        if (username != _configuration["BasicAuth:Username"] || password != _configuration["BasicAuth:Password"])
+        if (username != envUsername || password != envPassword)
             return AuthenticateResult.Fail("Invalid Username or Password");
 
         var claims = new[] {

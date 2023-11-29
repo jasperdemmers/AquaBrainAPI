@@ -55,8 +55,17 @@ builder.Services.AddScoped<IWoningService, WoningService>();
 builder.Services.AddScoped<IWatertonService, WatertonService>();
 builder.Services.AddScoped<ISensorService, SensorService>();
 builder.Services.AddScoped<IValveService, ValveService>();
+string MySqlServer = Environment.GetEnvironmentVariable("MYSQL_HOST") ?? "";
+string MySqlPort = Environment.GetEnvironmentVariable("MYSQL_PORT") ?? "3306";
+string MySqlDatabase = Environment.GetEnvironmentVariable("MYSQL_DATABASE") ?? "";
+string MySqlUser = Environment.GetEnvironmentVariable("MYSQL_USER") ?? "";
+string MySqlPassword = Environment.GetEnvironmentVariable("MYSQL_PASSWORD") ?? "";
+
+string MySqlConnectionString = $"server={MySqlServer};port={MySqlPort};database={MySqlDatabase};user={MySqlUser};password={MySqlPassword}";
+
 builder.Services.AddDbContext<DevelopmentContext>(options =>
-    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    //options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+    options.UseMySql(MySqlConnectionString,
     ServerVersion.Parse("8.2.0-mysql")));
 
 var app = builder.Build();
