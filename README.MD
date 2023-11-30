@@ -12,3 +12,11 @@ The following environment variables are required to run the application:
 The following environment variable is optional:
 
 - `MYSQL_PORT`: The port of the MySQL server. If not specified, it defaults to `3306`.
+
+# Platforms
+
+Support for the following platforms
+- `linux/amd64`
+- `linux/arm/v7`
+- `linux/arm/v8`
+- `linux/arm64`
