@@ -84,6 +84,10 @@ jobs:
 
   merge:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      packages: write
+      id-token: write
     needs:
       - build
     steps:
