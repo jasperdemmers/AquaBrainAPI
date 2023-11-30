@@ -1,27 +1,24 @@
-# Use the official image as a parent image.
-FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
-WORKDIR /app
-EXPOSE 80
-
-# Use the .NET SDK for building our application
+# Use the official .NET Core SDK as a parent image
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-WORKDIR /src
+WORKDIR /app
 
-# Copy csproj and restore as distinct layers
-COPY ["AquaBrainAPI.csproj", "./"]
-RUN dotnet restore "AquaBrainAPI.csproj"
+# Copy the project file and restore any dependencies (use .csproj for the project name)
+COPY *.csproj ./
+RUN dotnet restore
 
-# Copy everything else and build
+# Copy the rest of the application code
 COPY . .
-WORKDIR "/src"
-RUN dotnet build "AquaBrainAPI.csproj" -c Release -o /app/build
 
 # Publish the application
-FROM build AS publish
-RUN dotnet publish "AquaBrainAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish -c Release -o out
 
-# Define the final stage based on the aspnet runtime
-FROM base AS final
+# Build the runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/out ./
+
+# Expose the port your application will run on
+EXPOSE 80
+
+# Start the application
 ENTRYPOINT ["dotnet", "AquaBrainAPI.dll"]
