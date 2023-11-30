@@ -4,10 +4,10 @@ WORKDIR /app
 
 # Copy the rest of the application code
 COPY . ./
-RUN dotnet restore --arch $TARGETARCH
+RUN dotnet restore
 
 # Publish the application
-RUN dotnet publish --arch $TARGETARCH -c Release -o out
+RUN dotnet publish -c Release -o out
 
 # Build the runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
