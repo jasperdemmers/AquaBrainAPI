@@ -38,6 +38,19 @@ public class KlantService : IKlantService
         }
         return klant;
     }
+    public async Task<Klant> GetKlantByEmail(string Email)
+    {
+        //Find the klant with the given Email.
+
+        var klant = await _context.Klanten
+            .FirstOrDefaultAsync(k => k.Email == Email);
+
+        if (klant == null)
+        {
+            return null;
+        }
+        return klant;
+    }
     public  async Task<List<Klant>> AddKlant(Klant request)
     {
         _context.Klanten.Add(request);

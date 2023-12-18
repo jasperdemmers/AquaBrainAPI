@@ -36,6 +36,15 @@ namespace AquaBrainAPI.Controllers
             }
             return Ok(result);
         }
+        [HttpGet("email/{email}")]
+        public async Task<ActionResult<Klant>> GetKlantByEmail(string email)
+        {
+            var result = await _klantService.GetKlantByEmail(email);
+            if (result is null) {
+                return NotFound("Klant niet gevonden");
+            }
+            return Ok(result);
+        }
         [HttpGet("id/{id}")]
         public async Task<ActionResult<Klant>> GetKlantById(int id)
         {
