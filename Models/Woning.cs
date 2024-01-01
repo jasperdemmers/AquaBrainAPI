@@ -35,4 +35,8 @@ public partial class Woning
     public DateTime CreatedDate { get; set; }
 
     public DateTime UpdatedDate { get; set; }
+
+    public virtual Klant Klant { get; set; } = null!;
+
+    public virtual ICollection<Waterton> Watertons { get; set; } = new List<Waterton>();
 }

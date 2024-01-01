@@ -43,4 +43,6 @@ public partial class Klant
     public DateTime CreatedDate { get; set; }
 
     public DateTime UpdatedDate { get; set; }
+
+    public virtual ICollection<Woning> Wonings { get; set; } = new List<Woning>();
 }

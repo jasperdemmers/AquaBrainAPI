@@ -32,4 +32,12 @@ public partial class Waterton
     public DateTime CreatedDate { get; set; }
 
     public DateTime UpdatedDate { get; set; }
+
+    public virtual ICollection<OnderhoudLogboek> OnderhoudLogboeks { get; set; } = new List<OnderhoudLogboek>();
+
+    public virtual ICollection<Sensor> Sensors { get; set; } = new List<Sensor>();
+
+    public virtual ICollection<Valve> Valves { get; set; } = new List<Valve>();
+
+    public virtual Woning Woning { get; set; } = null!;
 }

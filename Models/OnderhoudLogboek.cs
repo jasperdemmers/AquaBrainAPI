@@ -15,4 +15,5 @@ public partial class OnderhoudLogboek
 
     public DateTime UpdatedDate { get; set; }
 
+    public virtual Waterton Waterton { get; set; } = null!;
 }
