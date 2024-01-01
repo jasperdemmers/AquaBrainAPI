@@ -51,11 +51,19 @@ public class KlantService : IKlantService
         }
         return klant;
     }
-    public  async Task<List<Klant>> AddKlant(Klant request)
+    public  async Task<Klant> AddKlant(Klant request)
     {
         _context.Klanten.Add(request);
         await _context.SaveChangesAsync();
-        return await _context.Klanten.ToListAsync();
+
+        var klant = await _context.Klanten
+            .FirstOrDefaultAsync(k => k.Gebruikersnaam == request.Gebruikersnaam);
+        
+        if (klant == null)
+        {
+            return null;
+        }
+        return klant;
     }
     public async Task<List<Klant>> DeleteKlant(int id)
     {
