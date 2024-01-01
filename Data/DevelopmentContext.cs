@@ -41,7 +41,7 @@ public partial class DevelopmentContext : DbContext
             entity.ToTable("klant");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
             entity.Property(e => e.Achternaam).HasMaxLength(255);
             entity.Property(e => e.CreatedDate)
@@ -75,7 +75,7 @@ public partial class DevelopmentContext : DbContext
             entity.HasIndex(e => e.WatertonId, "FKOnderhoud_959560");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -152,7 +152,7 @@ public partial class DevelopmentContext : DbContext
             entity.HasIndex(e => e.WoningId, "FKWaterton711584");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
             entity.Property(e => e.CreatedDate)
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
@@ -194,7 +194,7 @@ public partial class DevelopmentContext : DbContext
             entity.HasIndex(e => e.KlantId, "FKWoning312185");
 
             entity.Property(e => e.Id)
-                .ValueGeneratedNever()
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
             entity.Property(e => e.Adres).HasMaxLength(255);
             entity.Property(e => e.CreatedDate)
