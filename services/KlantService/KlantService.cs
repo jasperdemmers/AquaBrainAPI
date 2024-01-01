@@ -59,7 +59,7 @@ public class KlantService : IKlantService
     }
     public async Task<List<Klant>> DeleteKlant(int id)
     {
-        var klant = _context.Klanten.FindAsync(id);
+        var klant = await _context.Klanten.FindAsync(id);
         if (klant == null)
         {
             return null;
