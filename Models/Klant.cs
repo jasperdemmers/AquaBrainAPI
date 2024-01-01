@@ -16,7 +16,7 @@ public partial class requestKlant {
 }
 public partial class Klant
 {
-    public int Id { get; set; }
+    public int? Id { get; set; } = null!;
 
     public string Gebruikersnaam { get; set; } = null!;
 
@@ -43,6 +43,4 @@ public partial class Klant
     public DateTime CreatedDate { get; set; }
 
     public DateTime UpdatedDate { get; set; }
-
-    public virtual ICollection<Woning> Wonings { get; set; } = new List<Woning>();
 }

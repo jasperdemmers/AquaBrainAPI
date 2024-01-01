@@ -16,6 +16,4 @@ public partial class Valve
     public int WatertonId { get; set; }
 
     public DateTime CreatedDate { get; set; }
-
-    public virtual Waterton Waterton { get; set; } = null!;
 }

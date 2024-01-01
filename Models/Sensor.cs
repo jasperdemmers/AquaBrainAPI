@@ -27,6 +27,4 @@ public partial class Sensor
     public int Waarde { get; set; }
 
     public DateTime CreatedDate { get; set; }
-
-    public virtual Waterton Waterton { get; set; } = null!;
 }
