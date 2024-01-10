@@ -1,13 +1,13 @@
 version: '3.8'
 services:
   aquabrainapi:
-    image: ghcr.io/jasperdemmers/aquabrainapi:sha-44486ca
+    image: ghcr.io/jasperdemmers/aquabrainapi:main
     ports:
       - 8080:8080
     environment:
-      - BASIC_AUTH_USERNAME=AquaBrain
-      - BASIC_AUTH_PASSWORD=AquaBrain-BE
-      - MYSQL_HOST=192.168.154.22
-      - MYSQL_DATABASE=development
-      - MYSQL_USER=Backend
-      - MYSQL_PASSWORD=AquaBrain-BE
+      - BASIC_AUTH_USERNAME=
+      - BASIC_AUTH_PASSWORD=
+      - MYSQL_HOST=
+      - MYSQL_DATABASE=
+      - MYSQL_USER=
+      - MYSQL_PASSWORD=

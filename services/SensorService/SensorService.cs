@@ -33,6 +33,7 @@ public class SensorService : ISensorService
         var Sensors = await _context.Sensors
             .Where(s => s.SensorId == sensorId && s.WatertonId == watertonId)
             .OrderByDescending(s => s.CreatedDate)
+            .Take(10)
             .ToListAsync();
 
         if (Sensors == null || !Sensors.Any())
